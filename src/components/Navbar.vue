@@ -1,9 +1,9 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-	  <a class="navbar-brand" href="#">
+	  <router-link class="navbar-brand" to="/">
 	  	<img src="https://image.flaticon.com/icons/svg/202/202127.svg" width="30" height="30" class="d-inline-block align-top" alt="beer">
 	  	Beer Bank
-	  </a>
+	  </router-link>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>

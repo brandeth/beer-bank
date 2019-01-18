@@ -18,18 +18,27 @@
       </div>
     </div>
 
-    <div class="row px-5">
+    <div class="row px-5 beer-rows" v-if="filteredList.length">
       <div class="col-md-6 col-lg-4 my-2" v-for="(beer, index) in filteredList" :key="beer.id">
         <div class="card mx-2 animated fadeIn" >
           <div @click.prevent="toggle(beer)" :style="{background: `url(${beer.image_url})`}" class="card-bg my-2"></div>
           <div class="card-body">
-            <h5 class="card-title" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
+            <h5 class="card-title" @click.prevent="toggle(beer)" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
             <p class="card-text">{{ beer.tagline }}</p>
             <span v-if="beer.favorite" class="favorite" @click="removeFav(beer)"><i class="fas fa-star"></i></span>
             <span v-else class="favorite" @click="addFav(beer)"><i class="far fa-star"></i></span>
           </div>
         </div>
       </div>
+      <div class="loading" v-if="beers.length"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"> </div>
+    </div>
+
+    <div v-else-if="beers.length"> 
+        <h2> No Results found... </h2>
+    </div>
+
+    <div v-else>
+      <h2> Loading... </h2>
     </div>
 
     <Modal :beer="beer"/>
@@ -61,21 +70,6 @@ export default {
     }
   },
   methods: {
-    /*addToFavorites(beer) {
-      beer.favorite = true
-      this.favorites.push(beer)
-      toastr.success('Beer added to favorites!')
-      localStorage.setItem('favorites', JSON.stringify(this.favorites));
-    },
-    removeFromFavorites(beer) {
-      let index = this.favorites.indexOf(beer)
-      beer.favorite = false
-      if(index > -1) {
-        this.favorites.splice(index, 1)
-      }
-      localStorage.setItem('favorites', JSON.stringify(this.favorites));
-      toastr.error('Beer removed from favorites!')
-    },*/
     bottomVisible() {
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight
@@ -84,6 +78,7 @@ export default {
       return bottomOfPage || pageHeight < visible
     },
     addBeer() {
+      $('.loading').show()
       const axios = require('axios')
       axios.get('https://api.punkapi.com/v2/beers/random')
         .then(response => {
@@ -103,15 +98,12 @@ export default {
             favorite: false
           }
           this.beers.push(apiInfo)
-          if (this.bottomVisible()) {
+          if (this.bottomVisible()) {            
             this.addBeer()
           }
+          $('.xxx').hide()
       })
     }
-    /*toggleModal(beer) {
-      this.beer = beer
-      $('#exampleModal').modal('show')
-    }*/
   },
   watch: {
     bottom(bottom) {
@@ -125,7 +117,6 @@ export default {
       this.bottom = this.bottomVisible()
     })
     this.addBeer()
-    
   }
 }
 </script>

@@ -45,7 +45,8 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-success">Add to Favorites</button>
+	        <button v-if="!beer.favorite" type="button" class="btn btn-success">Add to Favorites</button>
+	        <button v-else type="button" class="btn btn-success">Remove From Favorites</button>
 	      </div>
 	    </div>
 	  </div>
@@ -55,7 +56,7 @@
 <script type="text/javascript">
 	export default {
 		name: 'Modal',
-		props: ['beer'],
+		props: ['beer', 'addFav', 'removeFav'],
 		data() {
 		    return {
 		      active: false,
