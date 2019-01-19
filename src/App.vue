@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view :beer="beer" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal"/>
+    <Navbar :search="search" :beers="beers" @xxx="zzz"/>
+    <router-view :beer="beer" :beers="beers" :search="search" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal" :filteredListMain="filteredListMain" @vvv="zzz"/>
     <a href="#" id="scroll" style="display: none;"><span></span></a>
   </div>
 </template>
@@ -16,10 +16,20 @@ export default {
   data() {
     return {
       beer: '',
-      favorites: []  
+      favorites: [],
+      search: '',
+      beers: []  
     }
   },
   methods: {
+    zzz(z) {
+      this.search = z
+    },
+    filteredListMain() {
+      return this.beers.filter(beer => {
+        return beer.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
     addToFavorites(beer) {
       beer.favorite = true
       this.favorites.push(beer)
@@ -27,6 +37,7 @@ export default {
       localStorage.setItem('favorites', JSON.stringify(this.favorites));
     },
     removeFromFavorites(beer) {
+      console.log(beer)
       let index = this.favorites.indexOf(beer)
       beer.favorite = false
       if(index > -1) {

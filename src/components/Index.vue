@@ -8,7 +8,7 @@
         <form class="w-75 mx-auto" v-on:submit.prevent>
           <div class="form-row">
             <div class="col">
-              <input v-model="search" type="text" class="form-control" id="search" aria-describedby="searchHelp" placeholder="Search a beer">  
+              <input v-model="mainSearch" type="text" class="form-control" id="search" aria-describedby="searchHelp" placeholder="Search a beer">  
             </div>
             <div class="col-auto">
               <button type="submit" class="btn btn-primary">Search</button>    
@@ -18,8 +18,8 @@
       </div>
     </div>
 
-    <div class="row px-5 beer-rows" v-if="filteredList.length">
-      <div class="col-md-6 col-lg-4 my-2" v-for="(beer, index) in filteredList" :key="beer.id">
+    <div v-if="beers.length && filteredListMain().length" class="row px-5 beer-rows">
+      <div class="col-md-6 col-lg-4 my-2" v-for="(beer, index) in filteredListMain()" :key="beer.id">
         <div class="card mx-2 animated fadeIn" >
           <div @click.prevent="toggle(beer)" :style="{background: `url(${beer.image_url})`}" class="card-bg my-2"></div>
           <div class="card-body">
@@ -30,10 +30,10 @@
           </div>
         </div>
       </div>
-      <div class="loading" v-if="beers.length"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"> </div>
+      <div class="loading" v-if="loading"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"> </div>
     </div>
 
-    <div v-else-if="beers.length"> 
+    <div v-else-if="beers.length && !filteredListMain.length"> 
         <h2> No Results found... </h2>
     </div>
 
@@ -51,25 +51,21 @@ import Modal from '@/components/Modal'
 import Vue from 'vue'
 export default {
   name: 'Index',
-  props: ['beer', 'fav', 'addFav', 'removeFav', 'toggle'],
+  props: ['beer', 'fav', 'addFav', 'removeFav', 'toggle', 'search', 'beers', 'filteredListMain'],
   components: {
     Modal
   },
   data () {
     return {
-      search: '',
       bottom: false,
-      beers: []
-    }
-  },
-  computed: {
-    filteredList() {
-      return this.beers.filter(beer => {
-        return beer.name.toLowerCase().includes(this.search.toLowerCase())
-      })
+      mainSearch: this.search,
+      loading: false
     }
   },
   methods: {
+    vvv() {
+      this.$emit("vvv", this.mainSearch)
+    },
     bottomVisible() {
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight
@@ -78,10 +74,12 @@ export default {
       return bottomOfPage || pageHeight < visible
     },
     addBeer() {
-      $('.loading').show()
+      this.loading = true
       const axios = require('axios')
       axios.get('https://api.punkapi.com/v2/beers/random')
         .then(response => {
+          $('.loading').show()
+          this.loading = false
           let api = response.data[0]
           let apiInfo = {
             name : api.name,
@@ -101,15 +99,17 @@ export default {
           if (this.bottomVisible()) {            
             this.addBeer()
           }
-          $('.xxx').hide()
       })
     }
   },
   watch: {
     bottom(bottom) {
-      if (bottom) {
+      if (bottom && this.mainSearch === "") {
         this.addBeer()
       }
+    },
+    mainSearch() {
+      this.vvv()
     }
   },
   created() {

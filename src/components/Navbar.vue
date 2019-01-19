@@ -4,6 +4,10 @@
 	  	<img src="https://image.flaticon.com/icons/svg/202/202127.svg" width="30" height="30" class="d-inline-block align-top" alt="beer">
 	  	Beer Bank
 	  </router-link>
+	  <form class="form-inline my-2 my-lg-0 search-form" v-on:submit.prevent>
+      <input v-model="navSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -21,6 +25,7 @@
 	      	</router-link>
 	      </li>
 	    </ul>
+
 	  </div>
 	</nav>
 </template>
@@ -28,8 +33,33 @@
 <script type="text/javascript">
 	export default {
 		name: 'Navbar',
+		props: ['search', 'beers'],
 		data () {
-			return {}
+			return {
+				navBeers: this.beers,
+				navSearch: this.search
+			}
+		},
+		watch: {
+			navSearch() {
+				this.xxx()
+			}
+		},
+		methods: {
+			xxx() {
+				this.$emit('xxx', this.navSearch)
+			}
+		},
+		mounted() {
+			const searchForm = $('.search-form')
+			//searchForm.hide()
+			window.addEventListener('scroll', () => {
+	      if (window.scrollY >= 300) {
+	      	//searchForm.fadeIn()
+	      } else {
+	      	//searchForm.fadeOut()
+	      }
+	    })
 		}
 	}
 </script>
