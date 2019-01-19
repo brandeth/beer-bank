@@ -3,6 +3,12 @@
     <Navbar :search="search" :beers="beers" @nav-search="modSearch"/>
     <router-view :beer="beer" :beers="beers" :search="search" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal" :filteredListMain="filteredListMain" @main-search="modSearch"/>
     <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <footer class="text-muted">
+      <div class="container">
+        <p>The Beer Bank is &copy; Beer Bank, but please drink responsibly! | Icon from <a href="https://flaticon.com">Flat Icon</a></p>
+        <p>A budding developer you are? <a href="https://turing.com/" target="_blank">Visit turing.com</a> or read take the <a href="https://turing.ly/" target="_blank">exam</a>.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
