@@ -16,7 +16,7 @@
 	        </div>
 	      </div>
 	    </div>
-	    <div v-else-if="!filteredFav.length && search !== ''" class="py-5">
+	    <div v-else-if="!filteredFav.length" class="py-5">
 	    	<h2 class="text-center">No results found</h2>
 	   	</div>
 	    <div v-else class="py-5">
@@ -36,7 +36,6 @@
 		props: ['beer', 'fav', 'addFav', 'removeFav', 'toggle', 'search', 'filteredListMain'],
 		data() {
 			return {
-				//favorites: this.fav
 			}
 		},
 		computed: {
@@ -47,6 +46,8 @@
 			}
 		}, 
 		mounted() {
+			//this.favSearch = ""
+			//$('#nav-search').val("")
 			this.favorites = JSON.parse(localStorage.getItem('favorites'));
 		}
 	}

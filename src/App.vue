@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar :search="search" :beers="beers" @xxx="zzz"/>
-    <router-view :beer="beer" :beers="beers" :search="search" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal" :filteredListMain="filteredListMain" @vvv="zzz"/>
+    <Navbar :search="search" :beers="beers" @nav-search="modSearch"/>
+    <router-view :beer="beer" :beers="beers" :search="search" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal" :filteredListMain="filteredListMain" @main-search="modSearch"/>
     <a href="#" id="scroll" style="display: none;"><span></span></a>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     }
   },
   methods: {
-    zzz(z) {
+    modSearch(z) {
       this.search = z
     },
     filteredListMain() {

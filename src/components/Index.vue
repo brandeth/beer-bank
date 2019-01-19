@@ -63,8 +63,8 @@ export default {
     }
   },
   methods: {
-    vvv() {
-      this.$emit("vvv", this.mainSearch)
+    mainSrch() {
+      this.$emit("main-search", this.mainSearch)
     },
     bottomVisible() {
       const scrollY = window.scrollY
@@ -109,14 +109,21 @@ export default {
       }
     },
     mainSearch() {
-      this.vvv()
+      this.mainSrch()
     }
   },
-  created() {
+  mounted() {
+    this.mainSearch = ""
+    $('#nav-search').val("")
     window.addEventListener('scroll', () => {
       this.bottom = this.bottomVisible()
     })
     this.addBeer()
+  },
+  beforeDestroy() {
+    this.mainSearch = ""
+    this.mainSrch()
+    $('#nav-search').val("")
   }
 }
 </script>

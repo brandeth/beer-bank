@@ -5,7 +5,7 @@
 	  	Beer Bank
 	  </router-link>
 	  <form class="form-inline my-2 my-lg-0 search-form" v-on:submit.prevent>
-      <input v-model="navSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <input v-model="navSearch" class="form-control mr-sm-2" id="nav-search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,17 +42,18 @@
 		},
 		watch: {
 			navSearch() {
-				this.xxx()
+				this.navSrch()
 			}
 		},
 		methods: {
-			xxx() {
-				this.$emit('xxx', this.navSearch)
+			navSrch() {
+				this.$emit('nav-search', this.navSearch)
 			}
 		},
 		mounted() {
 			const searchForm = $('.search-form')
 			//searchForm.hide()
+			$('#nav-search').val("")
 			window.addEventListener('scroll', () => {
 	      if (window.scrollY >= 300) {
 	      	//searchForm.fadeIn()
