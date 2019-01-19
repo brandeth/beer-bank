@@ -45,8 +45,8 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button v-if="!beer.favorite" type="button" class="btn btn-success">Add to Favorites</button>
-	        <button v-else type="button" class="btn btn-success">Remove From Favorites</button>
+	        <button v-if="!beer.favorite" @click.prevent="addFav(beer)" type="button" class="btn btn-success">Add to Favorites</button>
+	        <button v-else @click.prevent="removeFav(beer)" type="button" class="btn btn-danger">Remove From Favorites</button>
 	      </div>
 	    </div>
 	  </div>

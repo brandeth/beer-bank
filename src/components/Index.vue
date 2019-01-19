@@ -41,7 +41,7 @@
       <h2> Loading... </h2>
     </div>
 
-    <Modal :beer="beer"/>
+    <Modal :beer="beer" :addFav="addFav" :removeFav="removeFav"/>
     
   </main>
 </template>
