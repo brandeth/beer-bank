@@ -4,16 +4,13 @@
 	  	<img src="https://image.flaticon.com/icons/svg/202/202127.svg" width="30" height="30" class="d-inline-block align-top" alt="beer">
 	  	Beer Bank
 	  </router-link>
-	  <form class="form-inline my-2 my-lg-0 search-form" v-on:submit.prevent>
-      <input v-model="navSearch" class="form-control mr-sm-2" id="nav-search" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+	  
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav ml-auto">
+	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item">
 	      	<router-link class="nav-link" to="/">
 	      		<span>Home</span>
@@ -25,7 +22,10 @@
 	      	</router-link>
 	      </li>
 	    </ul>
-
+	    <form class="form-inline my-2 my-lg-0 search-form" v-on:submit.prevent>
+	      <input v-model="navSearch" class="form-control mr-sm-2" id="nav-search" type="search" placeholder="Search" aria-label="Search">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	    </form>
 	  </div>
 	</nav>
 </template>
