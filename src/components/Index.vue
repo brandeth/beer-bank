@@ -70,7 +70,7 @@ export default {
       const scrollY = window.scrollY
       const visible = document.documentElement.clientHeight
       const pageHeight = document.documentElement.scrollHeight
-      const bottomOfPage = visible + scrollY >= pageHeight
+      const bottomOfPage = visible + scrollY + 420 >= pageHeight
       return bottomOfPage || pageHeight < visible
     },
     addBeer() {
