@@ -37,7 +37,7 @@
         <div class="card mx-2 animated fadeIn" style="min-height: 350px" >
           <div @click.prevent="toggle(beer)" :style="{background: `url(${beer.image_url})`}" class="card-bg my-2"></div>
           <div class="card-body">
-            <h5 class="card-title text-center" style="color: goldenrod" @click.prevent="toggle(beer)" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
+            <h5 class="card-title text-center font-weight-bolder text-orange" @click.prevent="toggle(beer)" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
             <p class="card-text text-center">{{ beer.tagline }}</p>
             <span v-if="beer.favorite" class="favorite" @click="removeFav(beer)"><i class="fas fa-star"></i></span>
             <span v-else class="favorite" @click="addFav(beer)"><i class="far fa-star"></i></span>
