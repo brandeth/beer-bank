@@ -3,7 +3,7 @@
     <!-- <Navbar :search="search" :beers="beers" @nav-search="modSearch"/> -->
     <router-view style="min-height: 100vh" :beer="beer" :beers="beers" :search="search" :fav="favorites" :addFav="addToFavorites" :removeFav="removeFromFavorites" :toggle="toggleModal" :filteredListMain="filteredListMain" @main-search="modSearch"/>
     <a href="#" id="scroll" style="display: none;"><span></span></a>
-    <footer class="text-muted mt-5 py-5" style="background-color: #d09c02;">
+    <footer class="text-muted mt-5 py-5 bg-orange">
       <div class="container">
         <p class="text-white">The Beer Bank is &copy; Beer Bank, but please drink responsibly! | Icon from <a href="https://flaticon.com" class="text-danger">Flat Icon</a></p>
         <p class="text-white">A budding developer you are? <a href="https://turing.com/" class="text-danger" target="_blank">Visit turing.com</a> or take the <a href="https://turing.ly/" target="_blank" class="text-danger">exam</a>.</p>

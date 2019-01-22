@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<!-- <Navbar /> -->
-		<div class="jumbotron pt-0 pb-3 rounded-0 bg-warning sticky-top">
-	      <nav class="navbar navbar-expand navbar-dark">
+		<div class="jumbotron pt-0 pb-3 rounded-0 bg-orange ">
+	      <nav class="navbar navbar-expand navbar-dark bg-orange fixed-top">
 	        <div class="collapse navbar-collapse" id="navbarsExample02">
 	          <ul class="navbar-nav ml-auto">
 	            <li class="nav-item">
@@ -19,9 +19,9 @@
 	        </div>
 	      </nav>
 
-	      <div class="container">
-	        <h2 class="display-5 text-center my-0 text-white">The Beer Bank</h2>
-	        <p class="text-center my-0 text-white">Find your Favourite Beer here</p>
+	      <div class="container mt-5">
+	        <h2 class="display-5 pt-2 text-center my-0 text-white">The Beer Bank</h2>
+	        <p class="text-center my-0 text-white p-0">Find your Favourite Beer here</p>
 	        <form class="w-75 mx-auto" v-on:submit.prevent>
 	          <div class="form-row">
 	            <div class="col">
