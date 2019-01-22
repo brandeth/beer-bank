@@ -1,43 +1,61 @@
 <template>
-  <main class="container py-5">
+  <main class="pt-0">
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron pt-0 pb-3 rounded-0 bg-warning sticky-top">
+      <nav class="navbar navbar-expand navbar-dark">
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">
+                <span class="text-white">Home</span>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/favorites">
+                <span class="text-white">Favorites</span>
+              </router-link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
       <div class="container">
-        <h1 class="display-4 text-center">The Beer Bank</h1>
-        <p class="lead text-center">Find your Favourite Beer here</p>
+        <h2 class="display-5 text-center my-0 text-white">The Beer Bank</h2>
+        <p class="text-center my-0 text-white">Find your Favourite Beer here</p>
         <form class="w-75 mx-auto" v-on:submit.prevent>
           <div class="form-row">
             <div class="col">
               <input v-model="mainSearch" type="text" class="form-control" id="search" aria-describedby="searchHelp" placeholder="Search a beer">  
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary">Search</button>    
             </div>
           </div>
         </form>
       </div>
     </div>
 
-    <div v-if="beers.length && filteredListMain().length" class="row px-5 beer-rows">
+    <div v-if="beers.length && filteredListMain().length" class="row px-5 beer-rows container mx-auto ">
       <div class="col-md-6 col-lg-4 my-2" v-for="(beer, index) in filteredListMain()" :key="beer.id">
-        <div class="card mx-2 animated fadeIn" >
+        <div class="card mx-2 animated fadeIn" style="min-height: 350px" >
           <div @click.prevent="toggle(beer)" :style="{background: `url(${beer.image_url})`}" class="card-bg my-2"></div>
           <div class="card-body">
-            <h5 class="card-title" @click.prevent="toggle(beer)" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
-            <p class="card-text">{{ beer.tagline }}</p>
+            <h5 class="card-title text-center" style="color: goldenrod" @click.prevent="toggle(beer)" data-toggle="modal" data-target="#exampleModal">{{ beer.name }}</h5>
+            <p class="card-text text-center">{{ beer.tagline }}</p>
             <span v-if="beer.favorite" class="favorite" @click="removeFav(beer)"><i class="fas fa-star"></i></span>
             <span v-else class="favorite" @click="addFav(beer)"><i class="far fa-star"></i></span>
           </div>
         </div>
+
       </div>
-      <div class="loading" v-if="loading"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"> </div>
+      
+      <div class="col">
+        <div class="loading" v-if="loading"> <h2 class="text-center py-5">Loading...</h2> </div>
+      </div>
     </div>
 
-    <div v-else-if="beers.length && !filteredListMain.length"> 
+    <div v-else-if="beers.length && !filteredListMain.length" class="px-5"> 
         <h2> No Results found... </h2>
     </div>
 
-    <div v-else>
+    <div v-else class="px-5">
       <h2> Loading... </h2>
     </div>
 
