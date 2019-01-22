@@ -4,7 +4,6 @@
 	  <div class="modal-dialog modal-xl" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">{{ beer.name }}</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -15,9 +14,9 @@
 		        	<div class="modal-img" :style="{background: `url(${beer.image_url})`}"></div>
 		        </div>
 		        <div class="col-md-8 col-sm-12">
-		        	<h2> {{ beer.name }} </h2>
+		        	<h2 class="text-orange font-weight-bolder"> {{ beer.name }} </h2>
 		        	<p> {{ beer.tagline }} </p>
-		        	<hr class='divider'>
+		        	<hr class='divider bg-orange'>
 		        	<div class="row">
 		        		<div class="col"><p><strong>IBU</strong>: {{ beer.ibu }}</p></div>
 		        		<div class="col"><p><strong>ABV</strong>: {{ beer.abv }}%</p></div>
