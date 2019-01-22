@@ -16,7 +16,7 @@
 		        <div class="col-md-8 col-sm-12">
 		        	<h2 class="text-orange font-weight-bolder"> {{ beer.name }} </h2>
 		        	<p> {{ beer.tagline }} </p>
-		        	<hr class='divider bg-orange'>
+		        	<hr class='divider bg-purple'>
 		        	<div class="row">
 		        		<div class="col"><p><strong>IBU</strong>: {{ beer.ibu }}</p></div>
 		        		<div class="col"><p><strong>ABV</strong>: {{ beer.abv }}%</p></div>
@@ -92,7 +92,6 @@
 	}
 	.divider {
 		border-top: 5px solid rgba(0,0,0,.1) !important;
-    	background-color: goldenrod /*#903475*/;
     	width: 50%;
     	margin-left: 0;
 	}
